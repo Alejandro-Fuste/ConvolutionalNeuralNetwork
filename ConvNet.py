@@ -11,6 +11,8 @@ class ConvNet(nn.Module):
         # Define various layers here, such as in the tutorial example
         # self.conv1 = nn.Conv2D(...)
 
+        self.fc1 = nn.Linear(100, 100)
+
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
         # During creation of each ConvNet model, you will assign one of the valid mode.
