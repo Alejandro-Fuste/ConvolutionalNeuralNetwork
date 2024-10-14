@@ -91,3 +91,12 @@ class ConvNet(nn.Module):
         # return  fcl
         # Delete line return NotImplementedError() once method is implemented.
         return NotImplementedError()
+
+    def flatten_features(self, x):
+        size = x.size()[1:]
+        num_features = 1
+        for s in size:
+            num_features *= s
+
+        return num_features
+
