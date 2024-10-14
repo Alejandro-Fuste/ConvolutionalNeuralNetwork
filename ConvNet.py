@@ -11,7 +11,8 @@ class ConvNet(nn.Module):
         # Define various layers here, such as in the tutorial example
         # self.conv1 = nn.Conv2D(...)
 
-        self.fc1 = nn.Linear(100, 100)
+        # step 1: fully connected layer with 100 neurons
+        self.fc1 = nn.Linear(28 * 28, 100)
 
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
@@ -37,11 +38,9 @@ class ConvNet(nn.Module):
         # One fully connected layer.
         #
         # ----------------- YOUR CODE HERE ----------------------
-        #
-        # Uncomment the following return stmt once method implementation is done.
-        # return  fcl
-        # Delete line return NotImplementedError() once method is implemented.
-        return NotImplementedError()
+        fcl = F.sigmoid(self.fc1(X))
+
+        return fcl
 
     # Use two convolutional layers.
     def model_2(self, X):
