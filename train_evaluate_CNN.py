@@ -186,6 +186,8 @@ def run_main(FLAGS):
         if test_accuracy > best_accuracy:
             best_accuracy = test_accuracy
 
+    # Save the accuracy to output.txt file
+
     print("accuracy is {:2.2f}".format(best_accuracy))
 
     print("Training and evaluation finished")
