@@ -78,7 +78,7 @@ def train(model, device, train_loader, optimizer, criterion, epoch, batch_size):
     return train_loss, train_acc
 
 
-def test(model, device, test_loader):
+def test(model, device, test_loader, criterion):
     '''
     Tests the model.
     model: The model to train. Should already be in correct device.
@@ -107,7 +107,7 @@ def test(model, device, test_loader):
             #
             # Remove NotImplementedError and assign correct loss function.
             # Compute loss based on same criterion as training 
-            loss = NotImplementedError()
+            loss = criterion(output, target)
 
             # Append loss to overall test loss
             losses.append(loss.item())
@@ -120,7 +120,7 @@ def test(model, device, test_loader):
             # ----------------- YOUR CODE HERE ----------------------
             #
             # Remove NotImplementedError and assign counting function for correct predictions.
-            correct = NotImplementedError()
+            correct += pred.eq(target.view_as(pred)).sum().item()
 
     test_loss = float(np.mean(losses))
     accuracy = 100. * correct / len(test_loader.dataset)
@@ -180,7 +180,7 @@ def run_main(FLAGS):
     for epoch in range(1, FLAGS.num_epochs + 1):
         train_loss, train_accuracy = train(model, device, train_loader,
                                            optimizer, criterion, epoch, FLAGS.batch_size)
-        test_loss, test_accuracy = test(model, device, test_loader)
+        test_loss, test_accuracy = test(model, device, test_loader, criterion)
 
         if test_accuracy > best_accuracy:
             best_accuracy = test_accuracy
