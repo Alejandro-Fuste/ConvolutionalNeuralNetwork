@@ -147,14 +147,14 @@ def run_main(FLAGS):
     # ----------------- YOUR CODE HERE ----------------------
     #
     # Remove NotImplementedError and assign correct loss function.
-    criterion = NotImplementedError()
+    criterion = nn.CrossEntropyLoss()
 
     # ======================================================================
     # Define optimizer function.
     # ----------------- YOUR CODE HERE ----------------------
     #
     # Remove NotImplementedError and assign appropriate optimizer with learning rate and other paramters.
-    optimizer = NotImplementedError()
+    optimizer = optim.SGD(model.parameters(), lr=FLAGS.learning_rate)
 
     # Create transformations to apply to each data sample 
     # Can specify variations such as image flip, color flip, random crop, ...
