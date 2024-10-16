@@ -38,6 +38,8 @@ class ConvNet(nn.Module):
         # One fully connected layer.
         #
         # ----------------- YOUR CODE HERE ----------------------
+        X = X.view(-1, self.flatten_features(X))
+
         fcl = F.sigmoid(self.fc1(X))
 
         return fcl

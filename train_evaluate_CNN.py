@@ -187,6 +187,10 @@ def run_main(FLAGS):
             best_accuracy = test_accuracy
 
     # Save the accuracy to output.txt file
+    with open("output.txt", "a") as f:
+        f.write(f"Best accuracy: {best_accuracy:.2f}\n")
+
+    print(f"Best accuracy saved to output.txt with value: {best_accuracy:.2f}")
 
     print("accuracy is {:2.2f}".format(best_accuracy))
 
