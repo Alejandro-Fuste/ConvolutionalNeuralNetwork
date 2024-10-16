@@ -48,9 +48,8 @@ def train(model, device, train_loader, optimizer, criterion, epoch, batch_size):
         # ======================================================================
         # Compute loss based on criterion
         # ----------------- YOUR CODE HERE ----------------------
-        #
-        # Remove NotImplementedError and assign correct loss function.
-        loss = NotImplementedError()
+
+        loss = criterion(output, target)
 
         # Computes gradient based on final loss
         loss.backward()
@@ -69,7 +68,7 @@ def train(model, device, train_loader, optimizer, criterion, epoch, batch_size):
         # ----------------- YOUR CODE HERE ----------------------
         #
         # Remove NotImplementedError and assign counting function for correct predictions.
-        correct = NotImplementedError()
+        correct += pred.eq(target.view_as(pred)).sum().item()
 
     train_loss = float(np.mean(losses))
     train_acc = correct / ((batch_idx + 1) * batch_size)
