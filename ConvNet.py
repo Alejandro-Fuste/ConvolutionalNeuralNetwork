@@ -69,14 +69,13 @@ class ConvNet(nn.Module):
         # Two convolutional layers + one fully connected layer, with ReLU.
         #
         # ----------------- YOUR CODE HERE ----------------------
-        x = F.max_pool2d(F.sigmoid(self.conv1(x)), (2, 1))
-        x = F.max_pool2d(F.sigmoid(self.conv2(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
 
         x = x.view(-1, self.flatten_features(x))
 
-        x = F.sigmoid(self.fc1(x))
+        x = F.relu(self.fc1(x))
 
-        #
         # Uncomment the following return stmt once method implementation is done.
         return x
 
