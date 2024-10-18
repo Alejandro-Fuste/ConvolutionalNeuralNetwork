@@ -213,6 +213,11 @@ if __name__ == '__main__':
                         type=int,
                         default=60,
                         help='Number of epochs to run trainer.')
+    # step 5 epochs
+    # parser.add_argument('--num_epochs',
+    #                     type=int,
+    #                     default=40,
+    #                     help='Number of epochs to run trainer.')
     parser.add_argument('--batch_size',
                         type=int, default=10,
                         help='Batch size. Must divide evenly into the dataset sizes.')
