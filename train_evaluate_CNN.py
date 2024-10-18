@@ -205,6 +205,10 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate',
                         type=float, default=0.1,
                         help='Initial learning rate.')
+    # step 3 learning rate
+    # parser.add_argument('--learning_rate',
+    #                     type=float, default=0.03,
+    #                     help='Initial learning rate.')
     parser.add_argument('--num_epochs',
                         type=int,
                         default=60,
