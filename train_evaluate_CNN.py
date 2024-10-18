@@ -153,7 +153,7 @@ def run_main(FLAGS):
     # Define optimizer function.
     # ----------------- YOUR CODE HERE ----------------------
     #
-    # Remove NotImplementedError and assign appropriate optimizer with learning rate and other paramters.
+    # Remove NotImplementedError and assign appropriate optimizer with learning rate and other parameters.
     optimizer = optim.SGD(model.parameters(), lr=FLAGS.learning_rate)
 
     # Create transformations to apply to each data sample 
