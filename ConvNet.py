@@ -14,16 +14,22 @@ class ConvNet(nn.Module):
         self.fc1 = nn.Linear(28 * 28, 100)
 
         # step 2: insert two convolutional layers
-        self.conv1 = nn.Conv2d(1, 40, 5)
-        self.conv2 = nn.Conv2d(40, 40, 5)
-        # self.fc1 = nn.Linear(40 * 28 * 28, 100)
+        # self.conv1 = nn.Conv2d(1, 40, 5)
+        # self.conv2 = nn.Conv2d(40, 40, 5)
+        # # self.fc1 = nn.Linear(40 * 4 * 4, 100)
 
         # step 4: add full connected layer
-        self.fc2 = nn.Linear(100, 100)
+        # self.fc2 = nn.Linear(100, 100)
 
         # step 5: change the neurons numbers in FC layers
-        # self.fc1 = nn.Linear(40 * 28 * 28, 1000)
+        # self.fc1 = nn.Linear(40 * 4 * 4, 1000)
         # self.fc2 = nn.Linear(1000, 1000)
+
+        # Dropout for regularization
+        self.dropout = nn.Dropout(p=0.5)
+
+        # Final output layer
+        self.fc3 = nn.Linear(1000, 10)
 
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
@@ -104,18 +110,27 @@ class ConvNet(nn.Module):
         return x
 
     # Use Dropout now.
-    def model_5(self, X):
+    def model_5(self, x):
         # ======================================================================
         # Two convolutional layers + two fully connected layers, with ReLU.
         # and  + Dropout.
         #
         # ----------------- YOUR CODE HERE ----------------------
-        #
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
+
+        x = x.view(-1, self.flatten_features(x))
+
+        x = F.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = F.relu(self.fc2(x))
+        x = self.dropout(x)
+
+        # Final output layer
+        x = self.fc3(x)
 
         # Uncomment the following return stmt once method implementation is done.
-        # return  fcl
-        # Delete line return NotImplementedError() once method is implemented.
-        return NotImplementedError()
+        return x
 
     def flatten_features(self, x):
         size = x.size()[1:]
