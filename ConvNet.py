@@ -18,6 +18,13 @@ class ConvNet(nn.Module):
         self.conv2 = nn.Conv2d(40, 40, 5)
         # self.fc1 = nn.Linear(40 * 28 * 28, 100)
 
+        # step 4: add full connected layer
+        self.fc2 = nn.Linear(100, 100)
+
+        # step 5: change the neurons numbers in FC layers
+        # self.fc1 = nn.Linear(40 * 28 * 28, 1000)
+        # self.fc2 = nn.Linear(1000, 1000)
+
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
         # During creation of each ConvNet model, you will assign one of the valid mode.
@@ -80,16 +87,21 @@ class ConvNet(nn.Module):
         return x
 
     # Add one extra fully connected layer.
-    def model_4(self, X):
+    def model_4(self, x):
         # ======================================================================
         # Two convolutional layers + two fully connected layers, with ReLU.
         #
         # ----------------- YOUR CODE HERE ----------------------
-        #
-        # Uncomment the following return stmt once method implementation is done.
-        # return  fcl
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
+
+        x = x.view(-1, self.flatten_features(x))
+
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+
         # Delete line return NotImplementedError() once method is implemented.
-        return NotImplementedError()
+        return x
 
     # Use Dropout now.
     def model_5(self, X):
