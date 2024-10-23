@@ -26,10 +26,10 @@ class ConvNet(nn.Module):
         # self.fc2 = nn.Linear(1000, 1000)
 
         # Dropout for regularization
-        self.dropout = nn.Dropout(p=0.5)
+        # self.dropout = nn.Dropout(p=0.5)
 
         # Final output layer
-        self.fc3 = nn.Linear(1000, 10)
+        # self.fc3 = nn.Linear(1000, 10)
 
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
