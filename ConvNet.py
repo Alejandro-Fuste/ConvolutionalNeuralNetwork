@@ -14,9 +14,9 @@ class ConvNet(nn.Module):
         self.fc1 = nn.Linear(28 * 28, 100)
 
         # step 2: insert two convolutional layers
-        # self.conv1 = nn.Conv2d(1, 40, 5)
-        # self.conv2 = nn.Conv2d(40, 40, 5)
-        # # self.fc1 = nn.Linear(40 * 4 * 4, 100)
+        self.conv1 = nn.Conv2d(1, 40, 5)
+        self.conv2 = nn.Conv2d(40, 40, 5)
+        self.fc1 = nn.Linear(40 * 4 * 4, 100)
 
         # step 4: add full connected layer
         # self.fc2 = nn.Linear(100, 100)
