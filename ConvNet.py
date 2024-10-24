@@ -77,6 +77,7 @@ class ConvNet(nn.Module):
         # ----------------- YOUR CODE HERE ----------------------
         # Convolution + Pooling + Activation
         x = F.max_pool2d(F.sigmoid(self.conv1(x)), (2, 1))
+
         # Convolution + Pooling + Activation
         x = F.max_pool2d(F.sigmoid(self.conv2(x)), (2, 1))
 
@@ -98,12 +99,20 @@ class ConvNet(nn.Module):
         # Two convolutional layers + one fully connected layer, with ReLU.
         #
         # ----------------- YOUR CODE HERE ----------------------
+        # Convolution + Pooling + Activation
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+
+        # Convolution + Pooling + Activation
         x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
 
+        # Flatten the input
         x = x.view(-1, self.flatten_features(x))
 
-        x = F.relu(self.fc1(x))
+        # Fully connected layer
+        x = F.relu(self.fc3(x))
+
+        # Output layer
+        x = self.fc4(x)
 
         # Uncomment the following return stmt once method implementation is done.
         return x
