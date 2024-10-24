@@ -24,11 +24,11 @@ class ConvNet(nn.Module):
         # self.fc5 = nn.Linear(100, 100)
 
         # step 5: change the neurons numbers in FC layers
-        self.conv1 = nn.Conv2d(1, 40, 5)
-        self.conv2 = nn.Conv2d(40, 40, 5)
-        self.fc1 = nn.Linear(40 * 4 * 4, 1000)
-        self.fc2 = nn.Linear(1000, 1000)
-        self.fc3 = nn.Linear(1000, 10)
+        # self.conv1 = nn.Conv2d(1, 40, 5)
+        # self.conv2 = nn.Conv2d(40, 40, 5)
+        # self.fc1 = nn.Linear(40 * 4 * 4, 1000)
+        # self.fc2 = nn.Linear(1000, 1000)
+        # self.fc3 = nn.Linear(1000, 10)
 
         # Dropout for regularization
         self.dropout = nn.Dropout(p=0.5)
@@ -102,10 +102,10 @@ class ConvNet(nn.Module):
         #
         # ----------------- YOUR CODE HERE ----------------------
         # Convolution + Pooling + Activation
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
 
         # Convolution + Pooling + Activation
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2))
 
         # Flatten the input
         x = x.view(-1, self.flatten_features(x))
