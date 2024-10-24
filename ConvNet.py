@@ -13,10 +13,13 @@ class ConvNet(nn.Module):
         # step 1: fully connected layer with 100 neurons
         self.fc1 = nn.Linear(28 * 28, 100)
 
+        # Fully connected layer to match output to 10 classes
+        self.fc2 = nn.Linear(100, 10)
+
         # step 2: insert two convolutional layers
         self.conv1 = nn.Conv2d(1, 40, 5)
         self.conv2 = nn.Conv2d(40, 40, 5)
-        self.fc1 = nn.Linear(40 * 4 * 4, 100)
+        self.fc3 = nn.Linear(40 * 4 * 4, 100)
 
         # step 4: add full connected layer
         # self.fc2 = nn.Linear(100, 100)
@@ -29,7 +32,7 @@ class ConvNet(nn.Module):
         # self.dropout = nn.Dropout(p=0.5)
 
         # Final output layer
-        # self.fc3 = nn.Linear(1000, 10)
+        self.fc4 = nn.Linear(100, 10)
 
         # This will select the forward pass function based on mode for the ConvNet.
         # Based on the question, you have 5 modes available for step 1 to 5.
@@ -55,11 +58,16 @@ class ConvNet(nn.Module):
         # One fully connected layer.
         #
         # ----------------- YOUR CODE HERE ----------------------
+        # Flatten the input
         x = x.view(-1, self.flatten_features(x))
 
-        fcl = F.sigmoid(self.fc1(x))
+        # Fully-connected layer with Sigmoid activation function
+        x = F.sigmoid(self.fc1(x))
 
-        return fcl
+        # Fully connected layer for output
+        x = self.fc2(x)
+
+        return x
 
     # Use two convolutional layers.
     def model_2(self, x):
@@ -67,12 +75,20 @@ class ConvNet(nn.Module):
         # Two convolutional layers + one fully connected layer.
         #
         # ----------------- YOUR CODE HERE ----------------------
+        # Convolution + Pooling + Activation
         x = F.max_pool2d(F.sigmoid(self.conv1(x)), (2, 1))
+        # Convolution + Pooling + Activation
         x = F.max_pool2d(F.sigmoid(self.conv2(x)), (2, 1))
 
+        # Flatten the input
         x = x.view(-1, self.flatten_features(x))
 
-        x = F.sigmoid(self.fc1(x))
+        # Fully connected layer
+        x = F.sigmoid(self.fc3(x))
+
+        # Output layer
+        x = self.fc4(x)
+
         # Uncomment the following return stmt once method implementation is done.
         return x
 
