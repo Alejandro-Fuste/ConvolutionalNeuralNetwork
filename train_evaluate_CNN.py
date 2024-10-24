@@ -200,7 +200,7 @@ if __name__ == '__main__':
     # Set parameters for Sparse Autoencoder
     parser = argparse.ArgumentParser('CNN Exercise.')
     parser.add_argument('--mode',
-                        type=int, default=3,
+                        type=int, default=4,
                         help='Select mode between 1-5.')
     # parser.add_argument('--learning_rate',
     #                     type=float, default=0.1,

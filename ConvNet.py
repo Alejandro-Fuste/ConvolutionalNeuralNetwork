@@ -21,7 +21,7 @@ class ConvNet(nn.Module):
         self.fc3 = nn.Linear(100, 10)  # Fully connected layer to match output to 10 classes
 
         # step 4: add full connected layer
-        # self.fc5 = nn.Linear(100, 100)
+        self.fc5 = nn.Linear(100, 100)
 
         # step 5: change the neurons numbers in FC layers
         # self.conv1 = nn.Conv2d(1, 40, 5)
@@ -87,10 +87,10 @@ class ConvNet(nn.Module):
         x = x.view(-1, self.flatten_features(x))
 
         # Fully connected layer
-        x = F.sigmoid(self.fc3(x))
+        x = F.sigmoid(self.fc2(x))
 
         # Output layer
-        x = self.fc4(x)
+        x = self.fc3(x)
 
         # Uncomment the following return stmt once method implementation is done.
         return x
@@ -111,10 +111,10 @@ class ConvNet(nn.Module):
         x = x.view(-1, self.flatten_features(x))
 
         # Fully connected layer
-        x = F.relu(self.fc3(x))
+        x = F.relu(self.fc2(x))
 
         # Output layer
-        x = self.fc4(x)
+        x = self.fc3(x)
 
         # Uncomment the following return stmt once method implementation is done.
         return x
@@ -126,22 +126,22 @@ class ConvNet(nn.Module):
         #
         # ----------------- YOUR CODE HERE ----------------------
         # Convolution + Pooling + Activation
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
 
         # Convolution + Pooling + Activation
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2))
 
         # Flatten the input
         x = x.view(-1, self.flatten_features(x))
 
         # Fully connected layer
-        x = F.relu(self.fc3(x))
+        x = F.relu(self.fc2(x))
 
-        # Fully connected layer
+        # Extra Fully connected layer
         x = F.relu(self.fc5(x))
 
         # Output layer
-        x = self.fc4(x)
+        x = self.fc3(x)
 
         # Delete line return NotImplementedError() once method is implemented.
         return x
