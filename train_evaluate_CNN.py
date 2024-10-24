@@ -200,24 +200,24 @@ if __name__ == '__main__':
     # Set parameters for Sparse Autoencoder
     parser = argparse.ArgumentParser('CNN Exercise.')
     parser.add_argument('--mode',
-                        type=int, default=5,
+                        type=int, default=2,
                         help='Select mode between 1-5.')
-    # parser.add_argument('--learning_rate',
-    #                     type=float, default=0.1,
-    #                     help='Initial learning rate.')
-    # step 3 learning rate
     parser.add_argument('--learning_rate',
-                        type=float, default=0.03,
+                        type=float, default=0.1,
                         help='Initial learning rate.')
-    # parser.add_argument('--num_epochs',
-    #                     type=int,
-    #                     default=60,
-    #                     help='Number of epochs to run trainer.')
-    # step 5 epochs
+    # step 3 learning rate
+    # parser.add_argument('--learning_rate',
+    #                     type=float, default=0.03,
+    #                     help='Initial learning rate.')
     parser.add_argument('--num_epochs',
                         type=int,
-                        default=40,
+                        default=60,
                         help='Number of epochs to run trainer.')
+    # step 5 epochs
+    # parser.add_argument('--num_epochs',
+    #                     type=int,
+    #                     default=40,
+    #                     help='Number of epochs to run trainer.')
     parser.add_argument('--batch_size',
                         type=int, default=10,
                         help='Batch size. Must divide evenly into the dataset sizes.')

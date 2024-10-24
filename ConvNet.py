@@ -11,15 +11,14 @@ class ConvNet(nn.Module):
         # Define various layers here, such as in the tutorial example
 
         # step 1: fully connected layer with 100 neurons
-        # self.fc1 = nn.Linear(28 * 28, 100)
-
-        # Fully connected layer to match output to 10 classes
-        # self.fc2 = nn.Linear(100, 10)
+        self.fc1 = nn.Linear(28 * 28, 100)
+        # self.fc2 = nn.Linear(100, 10) # Fully connected layer to match output to 10 classes
 
         # step 2: insert two convolutional layers
-        # self.conv1 = nn.Conv2d(1, 40, 5)
-        # self.conv2 = nn.Conv2d(40, 40, 5)
-        # self.fc3 = nn.Linear(40 * 4 * 4, 100)
+        self.conv1 = nn.Conv2d(1, 40, 5)
+        self.conv2 = nn.Conv2d(40, 40, 5)
+        self.fc2 = nn.Linear(40 * 4 * 4, 100)
+        self.fc3 = nn.Linear(100, 10)  # Fully connected layer to match output to 10 classes
 
         # step 4: add full connected layer
         # self.fc5 = nn.Linear(100, 100)
